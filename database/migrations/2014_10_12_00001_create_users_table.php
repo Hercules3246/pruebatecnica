@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('secondname');
             $table->string('firstlastname');
             $table->string('secondlastname');
-            $table->bigInteger('numeroid')->unique();
+            $table->string('numeroid');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('id_tipodocu')->unique();
+            $table->unsignedBigInteger('id_tipodocu');
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('id_tipodocu')->references('id')->on('tiposdocumentos');

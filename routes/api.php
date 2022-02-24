@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\pruebaTecnicaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+/* middleware para proteger las rutas de la api */
+
+
+
+
+Route::post('/postUser', [pruebaTecnicaController::class, 'crearUser']);
+Route::get('/getData', [pruebaTecnicaController::class, 'getData']);

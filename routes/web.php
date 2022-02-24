@@ -20,3 +20,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\pruebaTecnicaController::class, 'index'])->name('home');
+
+
