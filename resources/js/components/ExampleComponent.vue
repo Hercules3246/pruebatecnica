@@ -6,9 +6,9 @@
                     <div class="card-header">Formulario</div>
 
                     <div class="card-body">
-                        <form @submit.prevent="keepData">
+                        <form @submit.prevent="keepData" >
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="td"
                                         >Tipo de documento
                                         <span class="text-danger"
@@ -42,7 +42,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="id"
                                         >Numero de documento
                                         <span class="text-danger"
@@ -56,6 +56,7 @@
                                         type="text"
                                         placeholder="ingresa el numero de documento"
                                         v-model="form.numeroid"
+                                         v-on:keypress="isLetterOrNumber($event)"
                                         :class="{
                                             'is-invalid':
                                                 form.errors.has('numeroid'),
@@ -69,7 +70,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="fn"
                                         >Primer nombre
                                         <span class="text-danger"
@@ -83,6 +84,7 @@
                                         type="text"
                                         placeholder="ingresa el primer nombre"
                                         v-model="form.firstname"
+                                        @keypress="isLetter($event)"
                                         :class="{
                                             'is-invalid':
                                                 form.errors.has('firstname'),
@@ -96,7 +98,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="sn"
                                         >Segundo nombre
                                         <span class="text-danger"
@@ -109,6 +111,7 @@
                                         class="form-control"
                                         type="text"
                                         placeholder="ingresa el segundo nombre"
+                                        @keypress="isLetter($event)"
                                         v-model="form.secondname"
                                         :class="{
                                             'is-invalid':
@@ -123,7 +126,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="fl"
                                         >Primer apellido
                                         <span class="text-danger"
@@ -137,6 +140,7 @@
                                         type="text"
                                         placeholder="ingresa el primer apellido"
                                         v-model="form.firstlastname"
+                                             @keypress="isLetter($event)"
                                         :class="{
                                             'is-invalid':
                                                 form.errors.has(
@@ -152,7 +156,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="sl"
                                         >Segundo apellido
                                         <span class="text-danger"
@@ -166,6 +170,7 @@
                                         type="text"
                                         placeholder="ingresa el segundo apellido"
                                         v-model="form.secondlastname"
+                                             @keypress="isLetter($event)"
                                         :class="{
                                             'is-invalid':
                                                 form.errors.has(
@@ -181,7 +186,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="e"
                                         >Correo
                                         <span class="text-danger"
@@ -208,7 +213,7 @@
                             </div>
                             <br />
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <label for="pw"
                                         >Contraseña
                                         <span class="text-danger"
@@ -235,7 +240,7 @@
                             </div>
                             <br>
                             <div class="form-row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-10">
                                     <button class="btn btn-success" type="submit">
                                         Guardar
                                     </button>
@@ -309,9 +314,39 @@ export default {
                     console.log("Error trayendo data");
                 });
         },
+            isLetterOrNumber(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[A-Za-z0-9]+$/.test(char)) return true;
+      else e.preventDefault();
+    },
+    isLetter(e) {
+      let char = String.fromCharCode(e.keyCode);
+      if (/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g.test(char)) return true;
+      else e.preventDefault();
+    },
     },
     created() {
         this.getData();
     },
 };
 </script>
+<style>
+#fn {
+  text-transform: uppercase !important;
+}
+#sn {
+  text-transform: uppercase !important;
+}
+#fl {
+  text-transform: uppercase !important;
+}
+#sl {
+  text-transform: uppercase !important;
+}
+#e {
+  text-transform: uppercase !important;
+}
+#id {
+  text-transform: uppercase !important;
+}
+</style>

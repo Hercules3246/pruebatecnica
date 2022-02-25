@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pruebaTecnicaController;
+use App\Http\Controllers\ConsultarController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,5 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\pruebaTecnicaController::class, 'index'])->name('home');
-
+Route::get('/consultar', [App\Http\Controllers\ConsultarController::class, 'index'])->name('consultar');
+Route::get('/getAllUsers',  [ConsultarController::class, 'getAll'])->name('getusers'); 
 
